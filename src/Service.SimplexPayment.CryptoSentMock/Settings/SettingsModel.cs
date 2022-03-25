@@ -5,13 +5,31 @@ namespace Service.SimplexPayment.CryptoSentMock.Settings
 {
     public class SettingsModel
     {
-        [YamlProperty("SimplexPayment.CryptoSentMock.SeqServiceUrl")]
+        [YamlProperty("SimplexPaymentCryptoSentMock.SeqServiceUrl")]
         public string SeqServiceUrl { get; set; }
 
-        [YamlProperty("SimplexPayment.CryptoSentMock.ZipkinUrl")]
+        [YamlProperty("SimplexPaymentCryptoSentMock.ZipkinUrl")]
         public string ZipkinUrl { get; set; }
 
-        [YamlProperty("SimplexPayment.CryptoSentMock.ElkLogs")]
+        [YamlProperty("SimplexPaymentCryptoSentMock.ElkLogs")]
         public LogElkSettings ElkLogs { get; set; }
+        
+        [YamlProperty("SimplexPaymentCryptoSentMock.DefaultBroker")]
+        public string DefaultBroker { get; set; }
+        
+        [YamlProperty("SimplexPaymentCryptoSentMock.DefaultBrand")]
+        public string DefaultBrand { get; set; }
+        
+        [YamlProperty("SimplexPaymentCryptoSentMock.ClientWalletsGrpcServiceUrl")]
+        public string ClientWalletsGrpcServiceUrl { get; set; }
+
+        [YamlProperty("SimplexPaymentCryptoSentMock.SpotServiceBusHostPort")]
+        public string SpotServiceBusHostPort { get; set; }
+        
+        [YamlProperty("SimplexPaymentCryptoSentMock.MyNoSqlReaderHostPort")]
+        public string MyNoSqlReaderHostPort { get; set; }
+
+        [YamlProperty("SimplexPaymentCryptoSentMock.DelayInSec")]
+        public int DelayInSec { get; set; }
     }
 }
