@@ -48,7 +48,7 @@ namespace Service.SimplexPayment.CryptoSentMock.Jobs
             });
 
             var mapping = _assetMappingNoSql.Get().FirstOrDefault(x => x.AssetMapping.FireblocksAssetId == intention.ToAsset);
-            var network = mapping.AssetMapping.NetworkId;
+            var network = mapping?.AssetMapping?.NetworkId ?? "mock";
             
             var task = _publisher.PublishAsync(new FireblocksDepositSignal
             {
@@ -60,10 +60,14 @@ namespace Service.SimplexPayment.CryptoSentMock.Jobs
                 AssetSymbol = intention.ToAsset,
                 Status = FireblocksDepositStatus.New,
                 EventDate = DateTime.UtcNow,
-                Network = network
+                Network = network,
+                FeeAmount = intention.Fee,
+                FeeAssetSymbol = intention.FromCurrency
             });
             
-            Execute(task).Start();
+            #pragma warning disable CS4014
+            Execute(task);
+            #pragma warning restore CS4014
         }
 
         private async Task Execute(Task publish)
