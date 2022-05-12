@@ -26,7 +26,7 @@ namespace Service.SimplexPayment.CryptoSentMock.Modules
             
             builder.RegisterMyServiceBusPublisher<FireblocksDepositSignal>(serviceBusClient, Fireblocks.Webhook.ServiceBus.Topics.FireblocksDepositSignalTopic, false);
 
-            var myNoSqlClient = builder.CreateNoSqlClient(() => Program.Settings.MyNoSqlReaderHostPort);
+            var myNoSqlClient = builder.CreateNoSqlClient(Program.Settings.MyNoSqlReaderHostPort, Program.LogFactory);
             builder.RegisterMyNoSqlReader<AssetMappingNoSql>(myNoSqlClient, AssetMappingNoSql.TableName);
             builder.RegisterClientWalletsClients(myNoSqlClient, Program.Settings.ClientWalletsGrpcServiceUrl);
 
